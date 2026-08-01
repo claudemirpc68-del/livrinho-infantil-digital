@@ -10,9 +10,7 @@ const estado = {
     paginaAtual: 0,
     modoNoite: false,
     favoritos: JSON.parse(localStorage.getItem('favoritos')) || [],
-    narrazioneAtiva: false,
     musicaTocando: false,
-    velocidadeFala: 0.9,
     categoriaAtual: 'todas'
 };
 
@@ -53,7 +51,6 @@ function inicializarApp() {
     configurarEventos();
     verificarModoNoite();
     configurarCategorias();
-    configurarVozes();
 }
 
 // ============================================
@@ -132,10 +129,6 @@ async function abrirHistoria(historia) {
         renderizarPagina();
         atualizarFavorito();
         
-        if (estado.narrazioneAtiva) {
-            setTimeout(() => narrarPaginaAtual(), 500);
-        }
-        
     } catch (erro) {
         console.error('Erro ao carregar história:', erro);
         alert('Erro ao carregar a história. Verifique se os arquivos JSON existem.');
@@ -152,10 +145,6 @@ function renderizarPagina() {
     mostrarPagina(pagina);
     atualizarNavegacao();
     atualizarProgresso();
-    
-    if (estado.narrazioneAtiva) {
-        setTimeout(() => narrarPaginaAtual(), 300);
-    }
 }
 
 function mostrarPagina(pagina) {
@@ -200,7 +189,6 @@ function atualizarProgresso() {
 // ============================================
 function paginaAnterior() {
     if (estado.paginaAtual > 0) {
-        pararNarracao();
         estado.paginaAtual--;
         renderizarPagina();
     }
@@ -210,7 +198,6 @@ function proximaPagina() {
     const totalPaginas = estado.dadosHistoria ? estado.dadosHistoria.paginas.length : 0;
     
     if (estado.paginaAtual < totalPaginas - 1) {
-        pararNarracao();
         estado.paginaAtual++;
         renderizarPagina();
     }
@@ -230,7 +217,6 @@ function alternarTela(tela) {
 }
 
 function voltarParaInicio() {
-    pararNarracao();
     alternarTela('inicio');
     estado.historiaAtual = null;
     estado.dadosHistoria = null;
@@ -291,59 +277,7 @@ function atualizarFavorito() {
 }
 
 // ============================================
-// NARRAÇÃO (SpeechSynthesis)
-// ============================================
-function toggleNarracao() {
-    estado.narrazioneAtiva = !estado.narrazioneAtiva;
-    
-    const btnNarrazione = document.getElementById('btnNarrazione');
-    if (btnNarrazione) btnNarrazione.classList.toggle('tocando', estado.narrazioneAtiva);
-    
-    if (estado.narrazioneAtiva) {
-        narrarPaginaAtual();
-    } else {
-        pararNarracao();
-    }
-}
-
-function narrarPaginaAtual() {
-    if (!estado.dadosHistoria || !('speechSynthesis' in window)) return;
-    
-    const pagina = estado.dadosHistoria.paginas[estado.paginaAtual];
-    
-    if (pagina.naracao) {
-        window.speechSynthesis.cancel();
-        
-        const utterance = new SpeechSynthesisUtterance(pagina.naracao);
-        utterance.lang = 'pt-BR';
-        utterance.rate = estado.velocidadeFala;
-        utterance.pitch = 1.2;
-        
-        const vozes = window.speechSynthesis.getVoices();
-        const vozPt = vozes.find(v => v.lang.includes('pt'));
-        if (vozPt) utterance.voice = vozPt;
-        
-        window.speechSynthesis.speak(utterance);
-    }
-}
-
-function pararNarracao() {
-    if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-    }
-}
-
-function configurarVozes() {
-    if ('speechSynthesis' in window) {
-        window.speechSynthesis.getVoices();
-        window.speechSynthesis.onvoiceschanged = () => {
-            window.speechSynthesis.getVoices();
-        };
-    }
-}
-
-// ============================================
-// MÚSICA DE FUNDO (Simples)
+// MÚSICA DE FUNDO
 // ============================================
 function toggleMusica() {
     estado.musicaTocando = !estado.musicaTocando;
@@ -353,13 +287,6 @@ function toggleMusica() {
     
     if (btnMusica) btnMusica.classList.toggle('tocando', estado.musicaTocando);
     if (btnMusicaGlobal) btnMusicaGlobal.classList.toggle('tocando', estado.musicaTocando);
-    
-    // Apenas visual por enquanto
-    if (estado.musicaTocando) {
-        console.log('🎵 Música de fundo ativada');
-    } else {
-        console.log('🔇 Música de fundo desativada');
-    }
 }
 
 // ============================================
@@ -375,34 +302,16 @@ function configurarEventos() {
     if (btnAnterior) btnAnterior.addEventListener('click', paginaAnterior);
     if (btnProximo) btnProximo.addEventListener('click', proximaPagina);
     
-    // Controles de áudio
-    const btnNarrazione = document.getElementById('btnNarrazione');
-    const btnAudio = document.getElementById('btnAudio');
+    // Controles
     const btnMusica = document.getElementById('btnMusica');
     const btnMusicaGlobal = document.getElementById('btnMusicaGlobal');
-    
-    if (btnNarrazione) btnNarrazione.addEventListener('click', toggleNarracao);
-    if (btnAudio) btnAudio.addEventListener('click', () => narrarPaginaAtual());
-    if (btnMusica) btnMusica.addEventListener('click', toggleMusica);
-    if (btnMusicaGlobal) btnMusicaGlobal.addEventListener('click', toggleMusica);
-    
-    // Outros controles
     const btnModoNoite = document.getElementById('btnModoNoite');
     const btnFavorito = document.getElementById('btnFavorito');
     
+    if (btnMusica) btnMusica.addEventListener('click', toggleMusica);
+    if (btnMusicaGlobal) btnMusicaGlobal.addEventListener('click', toggleMusica);
     if (btnModoNoite) btnModoNoite.addEventListener('click', toggleModoNoite);
     if (btnFavorito) btnFavorito.addEventListener('click', toggleFavorito);
-    
-    // Controle de velocidade
-    const velocidadeInput = document.getElementById('velocidadeFala');
-    const velocidadeValor = document.getElementById('velocidadeValor');
-    
-    if (velocidadeInput) {
-        velocidadeInput.addEventListener('input', (e) => {
-            estado.velocidadeFala = parseFloat(e.target.value);
-            if (velocidadeValor) velocidadeValor.textContent = `${estado.velocidadeFala.toFixed(1)}x`;
-        });
-    }
     
     // Navegação por teclado
     document.addEventListener('keydown', (e) => {
@@ -413,9 +322,6 @@ function configurarEventos() {
                 proximaPagina();
             } else if (e.key === 'Escape') {
                 voltarParaInicio();
-            } else if (e.key === ' ') {
-                e.preventDefault();
-                toggleNarracao();
             }
         }
     });
@@ -448,7 +354,6 @@ window.livrinhoApp = {
     proximaPagina,
     voltarParaInicio,
     toggleModoNoite,
-    toggleNarracao,
     toggleMusica,
     toggleFavorito
 };

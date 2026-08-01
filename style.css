@@ -201,52 +201,7 @@ body {
     50% { box-shadow: 0 0 0 10px rgba(77, 170, 255, 0); }
 }
 
-/* Controle de Velocidade */
-.controle-velocidade {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 15px;
-    margin-top: 15px;
-}
 
-body.modo-noite .controle-velocidade {
-    background: rgba(0, 0, 0, 0.3);
-}
-
-.controle-velocidade label {
-    font-weight: 600;
-    color: var(--cor-primaria);
-}
-
-.controle-velocidade input[type="range"] {
-    width: 150px;
-    height: 8px;
-    border-radius: 4px;
-    background: linear-gradient(90deg, var(--cor-primaria), var(--cor-secundaria));
-    outline: none;
-    -webkit-appearance: none;
-}
-
-.controle-velocidade input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--cor-branca);
-    border: 3px solid var(--cor-primaria);
-    cursor: pointer;
-    box-shadow: var(--sombra-suave);
-}
-
-#velocidadeValor {
-    font-weight: 600;
-    color: var(--cor-terciaria);
-    min-width: 40px;
-}
 
 .botao-icone {
     width: 60px;
