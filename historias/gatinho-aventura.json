@@ -1,0 +1,26 @@
+{
+  "id": "gatinho-aventura",
+  "titulo": "O Gatinho Aventureiro",
+  "corTema": "#87CEEB",
+  "emojiCapa": "🐱",
+  "paginas": [
+    {
+      "texto": "Mimi era uma gatinha curiosa que adorava explorar o jardim da vovó...",
+      "imagem": "assets/imagens/gatinho1.png",
+      "emojiDecoracao": "🌿",
+      "naracao": "Mimi era uma gatinha curiosa que adorava explorar o jardim da vovo"
+    },
+    {
+      "texto": "Um dia, ela encontrou uma borboleta azul que a levou até um lugar mágico!",
+      "imagem": "assets/imagens/gatinho2.png",
+      "emojiDecoracao": "🦋",
+      "naracao": "Um dia, ela encontrou uma borboleta azul que a levou ate um lugar magico"
+    },
+    {
+      "texto": "Mimi aprendeu que o mundo é grande e cheio de surpresas incríveis!",
+      "imagem": "assets/imagens/gatinho3.png",
+      "emojiDecoracao": "✨",
+      "naracao": "Mimi aprendeu que o mundo e grande e cheio de surpresas incriveis"
+    }
+  ]
+}

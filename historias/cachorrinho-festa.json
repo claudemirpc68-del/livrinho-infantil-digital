@@ -1,0 +1,26 @@
+{
+  "id": "cachorrinho-festa",
+  "titulo": "A Festa do Cachorrinho",
+  "corTema": "#98FB98",
+  "emojiCapa": "🐶",
+  "paginas": [
+    {
+      "texto": "Rex era um cachorrinho alegre que todos adoravam no bairro...",
+      "imagem": "assets/imagens/cachorrinho1.png",
+      "emojiDecoracao": "🏠",
+      "naracao": "Rex era um cachorrinho alegre que todos adoravam no bairro"
+    },
+    {
+      "texto": "Seus amigos prepararam uma festa surpresa com bolo e balões!",
+      "imagem": "assets/imagens/cachorrinho2.png",
+      "emojiDecoracao": "🎈",
+      "naracao": "Seus amigos prepararam uma festa surpresa com bolo e baloes"
+    },
+    {
+      "texto": "Rex sorriu e entendeu: os melhores presentes são os amigos de coração!",
+      "imagem": "assets/imagens/cachorrinho3.png",
+      "emojiDecoracao": "❤️",
+      "naracao": "Rex sorriu e entendeu: os melhores presentes sao os amigos de coracao"
+    }
+  ]
+}

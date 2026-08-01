@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livrinho Infantil Digital</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Tela Inicial -->
+    <div id="tela-inicio" class="tela ativa">
+        <div class="container-inicio">
+            <div class="titulo-container">
+                <h1 class="titulo-principal">📖 Livrinho Digital</h1>
+                <p class="subtitulo">Histórias mágicas para sonhar</p>
+            </div>
+            
+            <!-- Menu de Categorias -->
+            <div class="menu-categorias">
+                <button class="btn-categoria ativa" data-categoria="todas">📚 Todas</button>
+                <button class="btn-categoria" data-categoria="amizade">❤️ Amizade</button>
+                <button class="btn-categoria" data-categoria="aventura">🌟 Aventura</button>
+                <button class="btn-categoria" data-categoria="animais">🐾 Animais</button>
+            </div>
+            
+            <div class="galeria-historias">
+                <!-- Cards de histórias serão inseridos aqui via JS -->
+            </div>
+            
+            <!-- Controles Globais -->
+            <div class="controles-globais">
+                <button id="btnMusicaGlobal" class="botao-icone" title="Música de fundo">
+                    🎵
+                </button>
+                <button id="btnModoNoite" class="botao-icone" title="Modo Noite">
+                    🌙
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Leitura -->
+    <div id="tela-leitura" class="tela">
+        <div class="container-leitura">
+            <!-- Cabeçalho da leitura -->
+            <div class="cabecalho-leitura">
+                <button id="btnVoltar" class="botao-voltar">
+                    ← Voltar
+                </button>
+                <h2 id="tituloHistoria" class="titulo-historia"></h2>
+                <div class="controles-leitura">
+                    <button id="btnNarrazione" class="botao-icone" title="Narração automática">
+                        🗣️
+                    </button>
+                    <button id="btnAudio" class="botao-icone" title="Ouvir página">
+                        🔊
+                    </button>
+                    <button id="btnMusica" class="botao-icone" title="Música de fundo">
+                        🎵
+                    </button>
+                    <button id="btnFavorito" class="botao-icone" title="Favoritar">
+                        🤍
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Área do Livro -->
+            <div class="livro-container">
+                <div class="livro">
+                    <div class="pagina esquerda">
+                        <div class="conteudo-pagina">
+                            <div id="ilustracao" class="ilustracao">
+                                <!-- Ilustração da página -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pagina direita">
+                        <div class="conteudo-pagina">
+                            <p id="textoHistoria" class="texto-historia"></p>
+                            <div id="emojiDecoracao" class="emoji-decoracao"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navegação de páginas -->
+                <div class="navegacao-paginas">
+                    <button id="btnPaginaAnterior" class="botao-navegacao" disabled>
+                        ← Anterior
+                    </button>
+                    <span id="indicadorPagina" class="indicador-pagina">1 / 1</span>
+                    <button id="btnProximaPagina" class="botao-navegacao">
+                        Próxima →
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Barra de progresso -->
+            <div class="barra-progresso">
+                <div id="progresso" class="progresso"></div>
+            </div>
+            
+            <!-- Controle de Velocidade da Narração -->
+            <div class="controle-velocidade">
+                <label>Velocidade da fala:</label>
+                <input type="range" id="velocidadeFala" min="0.5" max="1.5" step="0.1" value="0.9">
+                <span id="velocidadeValor">0.9x</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Efeitos sonoros -->
+    <audio id="audioPagina" preload="auto"></audio>
+    <audio id="audioFundo" loop preload="auto"></audio>
+    <audio id="efeitoTransicao" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

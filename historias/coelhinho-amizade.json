@@ -1,0 +1,26 @@
+{
+  "id": "coelhinho-amizade",
+  "titulo": "O Coelhinho e a Amizade",
+  "corTema": "#FFB6C1",
+  "emojiCapa": "🐰",
+  "paginas": [
+    {
+      "texto": "Léo era um coelhinho que se sentia muito sozinho na floresta...",
+      "imagem": "assets/imagens/pagina1.png",
+      "emojiDecoracao": "🌳",
+      "naracao": "Leo era um coelhinho que se sentia muito sozinho na floresta"
+    },
+    {
+      "texto": "Um dia, ele encontrou a ratinha Fifi e o esquilo Tico...",
+      "imagem": "assets/imagens/pagina2.png",
+      "emojiDecoracao": "🐿️",
+      "naracao": "Um dia, ele encontrou a ratinha Fifi e o esquilo Tico"
+    },
+    {
+      "texto": "Eles se divertiram muito juntos! Léo aprendeu que ter amigos torna tudo mais feliz.",
+      "imagem": "assets/imagens/pagina3.png",
+      "emojiDecoracao": "❤️",
+      "naracao": "Eles se divertiram muito juntos! Leo aprendeu que ter amigos torna tudo mais feliz"
+    }
+  ]
+}

@@ -1,0 +1,662 @@
+/* ============================================
+   LIVRINHO INFANTIL DIGITAL - ESTILOS
+   ============================================ */
+
+/* Variáveis CSS */
+:root {
+    --cor-primaria: #FF6B9D;
+    --cor-secundaria: #C44DFF;
+    --cor-terciaria: #4DAAFF;
+    --cor-fundo: #FFF5F8;
+    --cor-texto: #5D4E60;
+    --cor-branca: #FFFFFF;
+    --sombra-suave: 0 4px 15px rgba(0, 0, 0, 0.1);
+    --sombra-media: 0 8px 25px rgba(0, 0, 0, 0.15);
+    --borda-arredondada: 20px;
+    --transicao: all 0.3s ease;
+}
+
+/* Modo Noite */
+body.modo-noite {
+    --cor-fundo: #1a1a2e;
+    --cor-texto: #eaeaea;
+    --cor-primaria: #9D6BFF;
+    --cor-secundaria: #FF6B9D;
+}
+
+/* Reset e Estilos Gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, var(--cor-fundo) 0%, #E8F4FF 100%);
+    min-height: 100vh;
+    color: var(--cor-texto);
+    overflow-x: hidden;
+}
+
+/* ============================================
+   TELAS
+   ============================================ */
+.tela {
+    display: none;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.tela.ativa {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   TELA INICIAL
+   ============================================ */
+.container-inicio {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.titulo-container {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.titulo-principal {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 3.5rem;
+    color: var(--cor-primaria);
+    text-shadow: 3px 3px 0px var(--cor-secundaria);
+    margin-bottom: 10px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.subtitulo {
+    font-size: 1.4rem;
+    color: var(--cor-terciaria);
+    font-weight: 600;
+}
+
+/* Galeria de Histórias */
+.galeria-historias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+/* Card de História */
+.card-historia {
+    background: var(--cor-branca);
+    border-radius: var(--borda-arredondada);
+    padding: 25px;
+    box-shadow: var(--sombra-suave);
+    cursor: pointer;
+    transition: var(--transicao);
+    text-align: center;
+    border: 4px solid transparent;
+}
+
+.card-historia:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--sombra-media);
+    border-color: var(--cor-primaria);
+}
+
+.card-historia .emoji-capa {
+    font-size: 5rem;
+    margin-bottom: 15px;
+    display: block;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.card-historia h3 {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 1.5rem;
+    color: var(--cor-primaria);
+    margin-bottom: 10px;
+}
+
+.card-historia .qtd-paginas {
+    font-size: 0.9rem;
+    color: #999;
+}
+
+/* Menu de Categorias */
+.menu-categorias {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.btn-categoria {
+    background: var(--cor-branca);
+    border: 3px solid transparent;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicao);
+    box-shadow: var(--sombra-suave);
+}
+
+.btn-categoria:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-media);
+}
+
+.btn-categoria.ativa {
+    background: var(--cor-primaria);
+    color: var(--cor-branca);
+    border-color: var(--cor-secundaria);
+}
+
+/* Controles Globais */
+.controles-globais {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100;
+    display: flex;
+    gap: 15px;
+}
+
+/* Botão Favorito Ativo */
+.botao-icone.favorito-ativo {
+    background: linear-gradient(135deg, #FF6B9D, #FF4081);
+    color: white;
+}
+
+/* Botão Música Tocando */
+.botao-icone.tocando {
+    background: linear-gradient(135deg, #4DAAFF, #2196F3);
+    animation: pulse-musica 1s infinite;
+}
+
+@keyframes pulse-musica {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(77, 170, 255, 0.4); }
+    50% { box-shadow: 0 0 0 10px rgba(77, 170, 255, 0); }
+}
+
+/* Controle de Velocidade */
+.controle-velocidade {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    margin-top: 15px;
+}
+
+body.modo-noite .controle-velocidade {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.controle-velocidade label {
+    font-weight: 600;
+    color: var(--cor-primaria);
+}
+
+.controle-velocidade input[type="range"] {
+    width: 150px;
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--cor-primaria), var(--cor-secundaria));
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.controle-velocidade input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--cor-branca);
+    border: 3px solid var(--cor-primaria);
+    cursor: pointer;
+    box-shadow: var(--sombra-suave);
+}
+
+#velocidadeValor {
+    font-weight: 600;
+    color: var(--cor-terciaria);
+    min-width: 40px;
+}
+
+.botao-icone {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background: var(--cor-branca);
+    box-shadow: var(--sombra-suave);
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: var(--transicao);
+}
+
+.botao-icone:hover {
+    transform: scale(1.1);
+    box-shadow: var(--sombra-media);
+}
+
+/* ============================================
+   TELA DE LEITURA
+   ============================================ */
+.container-leitura {
+    max-width: 1100px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cabeçalho */
+.cabecalho-leitura {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.botao-voltar {
+    background: var(--cor-primaria);
+    color: var(--cor-branca);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicao);
+}
+
+.botao-voltar:hover {
+    background: var(--cor-secundaria);
+    transform: translateX(-5px);
+}
+
+.titulo-historia {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 1.8rem;
+    color: var(--cor-primaria);
+    text-align: center;
+    flex: 1;
+}
+
+.controles-leitura {
+    display: flex;
+    gap: 10px;
+}
+
+/* ============================================
+   LIVRO
+   ============================================ */
+.livro-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.livro {
+    display: flex;
+    gap: 5px;
+    background: var(--cor-branca);
+    border-radius: var(--borda-arredondada);
+    box-shadow: var(--sombra-media);
+    overflow: hidden;
+    min-height: 450px;
+}
+
+.pagina {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagina.esquerda {
+    background: linear-gradient(135deg, #FFF5F8 0%, #FFE8F0 100%);
+    border-right: 2px dashed #FFD0E0;
+}
+
+body.modo-noite .pagina.esquerda {
+    background: linear-gradient(135deg, #2a2a4a 0%, #1f1f3a 100%);
+    border-right-color: #3a3a5a;
+}
+
+.pagina.direita {
+    background: var(--cor-branca);
+}
+
+body.modo-noite .pagina.direita {
+    background: #252540;
+}
+
+.conteudo-pagina {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Ilustração */
+.ilustracao {
+    width: 100%;
+    max-width: 350px;
+    aspect-ratio: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--sombra-suave);
+    background: linear-gradient(135deg, #FFD0E0 0%, #C8E6FF 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.modo-noite .ilustracao {
+    background: linear-gradient(135deg, #3a3a5a 0%, #2a2a4a 100%);
+}
+
+.ilustracao img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ilustracao-placeholder {
+    font-size: 8rem;
+    opacity: 0.6;
+}
+
+/* Texto da História */
+.texto-historia {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    text-align: center;
+    color: var(--cor-texto);
+    max-width: 450px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+}
+
+body.modo-noite .texto-historia {
+    background: rgba(0, 0, 0, 0.3);
+    color: #eaeaea;
+}
+
+.emoji-decoracao {
+    font-size: 3rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* ============================================
+   NAVEGAÇÃO DE PÁGINAS
+   ============================================ */
+.navegacao-paginas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 25px 0;
+}
+
+.botao-navegacao {
+    background: var(--cor-terciaria);
+    color: var(--cor-branca);
+    border: none;
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transicao);
+}
+
+.botao-navegacao:hover:not(:disabled) {
+    background: var(--cor-primaria);
+    transform: scale(1.05);
+}
+
+.botao-navegacao:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+body.modo-noite .botao-navegacao:disabled {
+    background: #444;
+}
+
+.indicador-pagina {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--cor-primaria);
+    min-width: 80px;
+    text-align: center;
+}
+
+/* Barra de Progresso */
+.barra-progresso {
+    width: 100%;
+    height: 8px;
+    background: #E0E0E0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: auto;
+}
+
+.progresso {
+    height: 100%;
+    background: linear-gradient(90deg, var(--cor-primaria), var(--cor-secundaria));
+    border-radius: 4px;
+    transition: width 0.5s ease;
+    width: 0%;
+}
+
+/* ============================================
+   ANIMAÇÕES DE TRANSIÇÃO
+   ============================================ */
+.pagina.animacao-sair-esquerda {
+    animation: sairEsquerda 0.4s ease forwards;
+}
+
+.pagina.animacao-sair-direita {
+    animation: sairDireita 0.4s ease forwards;
+}
+
+.pagina.animacao-entrar-esquerda {
+    animation: entrarEsquerda 0.4s ease forwards;
+}
+
+.pagina.animacao-entrar-direita {
+    animation: entrarDireita 0.4s ease forwards;
+}
+
+@keyframes sairEsquerda {
+    to { transform: translateX(-100%); opacity: 0; }
+}
+
+@keyframes sairDireita {
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes entrarEsquerda {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes entrarDireita {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* ============================================
+   RESPONSIVIDADE
+   ============================================ */
+@media (max-width: 768px) {
+    .titulo-principal {
+        font-size: 2.2rem;
+    }
+    
+    .subtitulo {
+        font-size: 1.1rem;
+    }
+    
+    .livro {
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .pagina {
+        min-height: 300px;
+    }
+    
+    .pagina.esquerda {
+        border-right: none;
+        border-bottom: 2px dashed #FFD0E0;
+    }
+    
+    body.modo-noite .pagina.esquerda {
+        border-bottom-color: #3a3a5a;
+    }
+    
+    .texto-historia {
+        font-size: 1.1rem;
+        padding: 15px;
+    }
+    
+    .cabecalho-leitura {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .navegacao-paginas {
+        gap: 15px;
+    }
+    
+    .botao-navegacao {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .titulo-principal {
+        font-size: 1.8rem;
+    }
+    
+    .galeria-historias {
+        grid-template-columns: 1fr;
+    }
+    
+    .card-historia .emoji-capa {
+        font-size: 4rem;
+    }
+    
+    .ilustracao {
+        max-width: 250px;
+    }
+    
+    .botao-icone {
+        width: 50px;
+        height: 50px;
+        font-size: 1.4rem;
+    }
+}
+
+/* ============================================
+   MODO NOITE - AJUSTES EXTRAS
+   ============================================ */
+body.modo-noite {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+body.modo-noite .titulo-principal {
+    color: #FFD700;
+    text-shadow: 3px 3px 0px #FF8C00;
+}
+
+body.modo-noite .subtitulo {
+    color: #87CEEB;
+}
+
+body.modo-noite .card-historia {
+    background: #252540;
+    border-color: #3a3a5a;
+}
+
+body.modo-noite .card-historia h3 {
+    color: #FFD700;
+}
+
+body.modo-noite .titulo-historia {
+    color: #FFD700;
+}
+
+body.modo-noite .indicador-pagina {
+    color: #FFD700;
+}
+
+body.modo-noite .botao-voltar {
+    background: #FFD700;
+    color: #1a1a2e;
+}
+
+body.modo-noite .botao-navegacao {
+    background: #87CEEB;
+}
+
+body.modo-noite .botao-navegacao:hover:not(:disabled) {
+    background: #FFD700;
+}
+
+/* ============================================
+   UTILITÁRIOS
+   ============================================ */
+.escondido {
+    display: none !important;
+}
+
+.visivel {
+    display: block !important;
+}
