@@ -54,6 +54,16 @@ function inicializarApp() {
 }
 
 // ============================================
+// SCROLL PARA HISTÓRIAS
+// ============================================
+function scrollToHistorias() {
+    const section = document.getElementById('historias-section');
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+// ============================================
 // CARREGAMENTO DE HISTÓRIAS
 // ============================================
 function carregarHistorias(categoria = 'todas') {
@@ -223,15 +233,11 @@ function voltarParaInicio() {
 }
 
 // ============================================
-// MODO NOITE
+// MODO NOITE (Toggle)
 // ============================================
 function toggleModoNoite() {
     estado.modoNoite = !estado.modoNoite;
     document.body.classList.toggle('modo-noite', estado.modoNoite);
-    
-    const btnModoNoite = document.getElementById('btnModoNoite');
-    if (btnModoNoite) btnModoNoite.textContent = estado.modoNoite ? '☀️' : '🌙';
-    
     localStorage.setItem('modoNoite', estado.modoNoite);
 }
 
@@ -240,8 +246,8 @@ function verificarModoNoite() {
     if (modoSalvo) {
         estado.modoNoite = true;
         document.body.classList.add('modo-noite');
-        const btn = document.getElementById('btnModoNoite');
-        if (btn) btn.textContent = '☀️';
+        const toggle = document.getElementById('toggleModoNoite');
+        if (toggle) toggle.checked = true;
     }
 }
 
@@ -283,16 +289,19 @@ function toggleMusica() {
     estado.musicaTocando = !estado.musicaTocando;
     
     const btnMusica = document.getElementById('btnMusica');
-    const btnMusicaGlobal = document.getElementById('btnMusicaGlobal');
-    
     if (btnMusica) btnMusica.classList.toggle('tocando', estado.musicaTocando);
-    if (btnMusicaGlobal) btnMusicaGlobal.classList.toggle('tocando', estado.musicaTocando);
 }
 
 // ============================================
 // EVENTOS
 // ============================================
 function configurarEventos() {
+    // Toggle Modo Noite
+    const toggleModoNoite = document.getElementById('toggleModoNoite');
+    if (toggleModoNoite) {
+        toggleModoNoite.addEventListener('change', toggleModoNoite);
+    }
+    
     // Navegação
     const btnVoltar = document.getElementById('btnVoltar');
     const btnAnterior = document.getElementById('btnPaginaAnterior');
@@ -304,13 +313,9 @@ function configurarEventos() {
     
     // Controles
     const btnMusica = document.getElementById('btnMusica');
-    const btnMusicaGlobal = document.getElementById('btnMusicaGlobal');
-    const btnModoNoite = document.getElementById('btnModoNoite');
     const btnFavorito = document.getElementById('btnFavorito');
     
     if (btnMusica) btnMusica.addEventListener('click', toggleMusica);
-    if (btnMusicaGlobal) btnMusicaGlobal.addEventListener('click', toggleMusica);
-    if (btnModoNoite) btnModoNoite.addEventListener('click', toggleModoNoite);
     if (btnFavorito) btnFavorito.addEventListener('click', toggleFavorito);
     
     // Navegação por teclado
@@ -347,13 +352,5 @@ function configurarEventos() {
     }, false);
 }
 
-// Exportar funções
-window.livrinhoApp = {
-    abrirHistoria,
-    paginaAnterior,
-    proximaPagina,
-    voltarParaInicio,
-    toggleModoNoite,
-    toggleMusica,
-    toggleFavorito
-};
+// Tornar função disponível globalmente
+window.scrollToHistorias = scrollToHistorias;

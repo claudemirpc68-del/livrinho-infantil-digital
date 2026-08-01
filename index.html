@@ -5,52 +5,133 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Livrinho Infantil Digital</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Tela Inicial -->
     <div id="tela-inicio" class="tela ativa">
         <div class="container-inicio">
-            <div class="titulo-container">
-                <h1 class="titulo-principal">📖 Livrinho Digital</h1>
-                <p class="subtitulo">Histórias mágicas para sonhar</p>
-            </div>
-            
-            <!-- Menu de Categorias -->
-            <div class="menu-categorias">
-                <button class="btn-categoria ativa" data-categoria="todas">📚 Todas</button>
-                <button class="btn-categoria" data-categoria="amizade">❤️ Amizade</button>
-                <button class="btn-categoria" data-categoria="aventura">🌟 Aventura</button>
-                <button class="btn-categoria" data-categoria="animais">🐾 Animais</button>
-            </div>
-            
-            <div class="galeria-historias">
-                <!-- Cards de histórias serão inseridos aqui via JS -->
-            </div>
-            
-            <!-- Controles Globais -->
-            <div class="controles-globais">
-                <button id="btnMusicaGlobal" class="botao-icone" title="Música de fundo">
-                    🎵
+            <!-- Header -->
+            <header class="header">
+                <div class="logo">
+                    <span class="logo-icon">📖</span>
+                    <span class="logo-text">Livrinho</span>
+                </div>
+                <div class="toggle-container">
+                    <span class="toggle-label">☀️</span>
+                    <label class="toggle">
+                        <input type="checkbox" id="toggleModoNoite">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="toggle-label">🌙</span>
+                </div>
+            </header>
+
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-illustration">
+                    <!-- SVG Ilustração de uma criança lendo sob uma árvore -->
+                    <svg viewBox="0 0 400 350" class="illustration-svg">
+                        <!-- Estrelas -->
+                        <circle class="star star-1" cx="50" cy="40" r="2"/>
+                        <circle class="star star-2" cx="120" cy="25" r="1.5"/>
+                        <circle class="star star-3" cx="200" cy="15" r="2"/>
+                        <circle class="star star-4" cx="280" cy="35" r="1.5"/>
+                        <circle class="star star-5" cx="350" cy="20" r="2"/>
+                        <circle class="star star-6" cx="80" cy="70" r="1"/>
+                        <circle class="star star-7" cx="320" cy="60" r="1"/>
+                        
+                        <!-- Lua -->
+                        <circle class="moon" cx="340" cy="50" r="30"/>
+                        <circle class="moon-crater" cx="330" cy="45" r="5"/>
+                        <circle class="moon-crater" cx="350" cy="55" r="3"/>
+                        
+                        <!-- Chão -->
+                        <ellipse class="ground" cx="200" cy="320" rx="180" ry="30"/>
+                        
+                        <!-- Árvore -->
+                        <rect class="tree-trunk" x="85" y="200" width="20" height="120"/>
+                        <circle class="tree-foliage-1" cx="95" cy="180" r="50"/>
+                        <circle class="tree-foliage-2" cx="70" cy="190" r="35"/>
+                        <circle class="tree-foliage-3" cx="120" cy="185" r="40"/>
+                        
+                        <!-- Criança sentada lendo -->
+                        <!-- Corpo -->
+                        <ellipse class="child-body" cx="200" cy="290" rx="25" ry="30"/>
+                        <!-- Cabeça -->
+                        <circle class="child-head" cx="200" cy="245" r="22"/>
+                        <!-- Cabelo -->
+                        <path class="child-hair" d="M178 240 Q180 220 200 218 Q220 220 222 240 Q225 250 222 260 Q220 265 200 268 Q180 265 178 260 Q175 250 178 240"/>
+                        <!-- Rosto -->
+                        <circle class="child-eye-left" cx="192" cy="248" r="2"/>
+                        <circle class="child-eye-right" cx="208" cy="248" r="2"/>
+                        <path class="child-smile" d="M195 255 Q200 260 205 255"/>
+                        <!-- Braços segurando livro -->
+                        <path class="child-arm-left" d="M175 280 Q160 270 155 260"/>
+                        <path class="child-arm-right" d="M225 280 Q240 270 245 260"/>
+                        <!-- Livro -->
+                        <rect class="book" x="145" y="250" width="40" height="30" rx="2"/>
+                        <rect class="book-pages" x="148" y="253" width="34" height="24" rx="1"/>
+                        <line class="book-line-1" x1="152" y1="260" x2="178" y2="260"/>
+                        <line class="book-line-2" x1="152" y1="266" x2="175" y2="266"/>
+                        <line class="book-line-3" x1="152" y1="272" x2="170" y2="272"/>
+                        
+                        <!-- Flor -->
+                        <circle class="flower-center" cx="320" cy="300" r="5"/>
+                        <circle class="flower-petal" cx="320" cy="290" r="5"/>
+                        <circle class="flower-petal" cx="328" cy="295" r="5"/>
+                        <circle class="flower-petal" cx="328" cy="305" r="5"/>
+                        <circle class="flower-petal" cx="320" cy="310" r="5"/>
+                        <circle class="flower-petal" cx="312" cy="305" r="5"/>
+                        <circle class="flower-petal" cx="312" cy="295" r="5"/>
+                        <rect class="flower-stem" x="318" y="305" width="4" height="20"/>
+                    </svg>
+                </div>
+                
+                <h1 class="hero-title">Histórias para Sonhar</h1>
+                <p class="hero-subtitle">Escolha uma aventura mágica</p>
+                
+                <button class="btn-start" onclick="scrollToHistorias()">
+                    Toque para Começar ✨
                 </button>
-                <button id="btnModoNoite" class="botao-icone" title="Modo Noite">
-                    🌙
-                </button>
-            </div>
+            </section>
+
+            <!-- Seção de Histórias -->
+            <section class="historias-section" id="historias-section">
+                <h2 class="section-title">Nossas Histórias</h2>
+                
+                <!-- Categorias -->
+                <div class="menu-categorias">
+                    <button class="btn-categoria ativa" data-categoria="todas">📚 Todas</button>
+                    <button class="btn-categoria" data-categoria="amizade">❤️ Amizade</button>
+                    <button class="btn-categoria" data-categoria="aventura">🌟 Aventura</button>
+                    <button class="btn-categoria" data-categoria="animais">🐾 Animais</button>
+                </div>
+                
+                <!-- Galeria -->
+                <div class="galeria-historias">
+                    <!-- Cards serão inseridos via JS -->
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <p>Feito com 💜 para crianças</p>
+            </footer>
         </div>
     </div>
 
     <!-- Tela de Leitura -->
     <div id="tela-leitura" class="tela">
         <div class="container-leitura">
-            <!-- Cabeçalho da leitura -->
+            <!-- Cabeçalho -->
             <div class="cabecalho-leitura">
-                <button id="btnVoltar" class="botao-voltar">
+                <button id="btnVoltar" class="btn-back">
                     ← Voltar
                 </button>
                 <h2 id="tituloHistoria" class="titulo-historia"></h2>
                 <div class="controles-leitura">
-                    <button id="btnMusica" class="botao-icone" title="Música de fundo">
+                    <button id="btnMusica" class="botao-icone" title="Música">
                         🎵
                     </button>
                     <button id="btnFavorito" class="botao-icone" title="Favoritar">
@@ -59,14 +140,12 @@
                 </div>
             </div>
             
-            <!-- Área do Livro -->
+            <!-- Livro -->
             <div class="livro-container">
                 <div class="livro">
                     <div class="pagina esquerda">
                         <div class="conteudo-pagina">
-                            <div id="ilustracao" class="ilustracao">
-                                <!-- Ilustração da página -->
-                            </div>
+                            <div id="ilustracao" class="ilustracao"></div>
                         </div>
                     </div>
                     
@@ -78,29 +157,24 @@
                     </div>
                 </div>
                 
-                <!-- Navegação de páginas -->
+                <!-- Navegação -->
                 <div class="navegacao-paginas">
-                    <button id="btnPaginaAnterior" class="botao-navegacao" disabled>
-                        ← Anterior
+                    <button id="btnPaginaAnterior" class="btn-nav" disabled>
+                        ←
                     </button>
                     <span id="indicadorPagina" class="indicador-pagina">1 / 1</span>
-                    <button id="btnProximaPagina" class="botao-navegacao">
-                        Próxima →
+                    <button id="btnProximaPagina" class="btn-nav">
+                        →
                     </button>
                 </div>
             </div>
             
-            <!-- Barra de progresso -->
+            <!-- Progresso -->
             <div class="barra-progresso">
                 <div id="progresso" class="progresso"></div>
             </div>
         </div>
     </div>
-
-    <!-- Efeitos sonoros -->
-    <audio id="audioPagina" preload="auto"></audio>
-    <audio id="audioFundo" loop preload="auto"></audio>
-    <audio id="efeitoTransicao" preload="auto"></audio>
 
     <script src="script.js"></script>
 </body>
